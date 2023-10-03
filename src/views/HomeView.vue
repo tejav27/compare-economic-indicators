@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import HistoricalDataView from './HistoricalDataView.vue';
+import HistoricalDataView from '../components/HistoricalDataView.vue';
 
 export default {
   components: {
