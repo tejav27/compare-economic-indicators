@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mx-auto" >
+  <v-container class="mx-auto">
     <LineChart v-if="loaded" :chartData="chartData" xAxisLabel="Year" :yAxisLabel="indicatorCode" />
     <v-card v-else class="mx-auto nodata">We are busy! Please try again later!</v-card>
   </v-container>
@@ -93,12 +93,11 @@ export default {
 
         segregatedDatasets[country].push(item)
       })
-
       return segregatedDatasets
     },
 
     createChartData(segregatedDatasets) {
-      const labels = []
+      const labels = new Set()
       const chartDatasets = []
 
       for (const country in segregatedDatasets) {
@@ -107,7 +106,7 @@ export default {
           const datasetData = []
 
           data.forEach((item) => {
-            labels.push(this.year(item.DateTime))
+            labels.add(this.year(item.DateTime))
             datasetData.push(item.Value)
           })
 
@@ -115,12 +114,12 @@ export default {
             label: country,
             data: datasetData,
             backgroundColor: this.getRandomColor(),
-            borderColor: this.getRandomColor(), // Specify the line color
+            borderColor: this.getRandomColor() // Specify the line color
           })
         }
       }
 
-      return { labels, chartDatasets }
+      return { labels: Array.from(labels), chartDatasets }
     },
 
     setChartData(labels, chartDatasets) {
@@ -136,11 +135,11 @@ export default {
 }
 </script>
 <style>
-  .nodata{
-    width: 30vw;
-    height: 40vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.nodata {
+  width: 30vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
