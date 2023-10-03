@@ -1,5 +1,8 @@
 <template>
-  <v-container align-center>
+  <v-container class="container">
+    <v-row class="mb-5">
+    <Header/>
+    </v-row>
     <v-row >
       <v-card class="mx-auto mb-3 d-flex dropdowns">
         <v-col>
@@ -24,29 +27,26 @@
       </v-card>
     </v-row>
     <v-row>
-      <v-card>
-        <HistoricalDataView :countryCodes="favorites" :indicatorCode="chosenIndicator" class="mx-auto" />
+      <v-card class="chartstyle">
+        <HistoricalData :countryCodes="favorites" :indicatorCode="chosenIndicator" />
       </v-card>
     </v-row>
+    <v-row class="mt-15">
+    <Footer/>
+    </v-row>
   </v-container>
-  <v-footer class="d-flex flex-column">
-      <div class="bg-teal d-flex w-100 align-center px-4">
-        <strong>Get connected with us on social networks!</strong>
-        <v-spacer></v-spacer>
-      </div>
-
-      <div class="px-4 py-2 bg-black text-center w-100">
-        @ {{ new Date().getFullYear() }} — <strong>Tejaswi</strong>
-      </div>
-    </v-footer>
 </template>
 
 <script>
-import HistoricalDataView from '../components/HistoricalData.vue';
+import HistoricalData from '../components/HistoricalData.vue'
+import Footer from '../components/Footer.vue'
+import Header from '../components/Header.vue'
 
 export default {
   components: {
-    HistoricalDataView
+    HistoricalData,
+    Footer,
+    Header
 },
   data() {
     return {
@@ -66,5 +66,14 @@ export default {
   }
  
 }
-
+.chartstyle{
+  background-color: #fff;
+  align-items: center;
+  margin: 10px auto;
+}
+.container{
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+  background-color: #ececec;
+}
 </style>

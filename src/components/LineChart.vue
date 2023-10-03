@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Line v-if="chartData" :data="this.chartData" :options="chartOptions" :style="myStyles"/>
+    <Line v-if="chartData" :data="this.chartData" :options="chartOptions" :style="linestyle"/>
   </div>
 </template>
 
@@ -19,10 +19,11 @@ export default {
     yAxisLabel: String
   },
   computed: {
-    myStyles () {
+    linestyle () {
       return {
         width: '50vw',
-        position: 'relative'
+        position: 'relative',
+        alignItems: 'center'
       }
     }
   },

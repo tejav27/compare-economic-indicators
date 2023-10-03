@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mx-auto">
+  <v-container class="mx-auto" >
     <LineChart v-if="loaded" :chartData="chartData" xAxisLabel="Year" :yAxisLabel="indicatorCode" />
     <v-card v-else class="mx-auto nodata"> We are busy! Please try again later!</v-card>
   </v-container>
