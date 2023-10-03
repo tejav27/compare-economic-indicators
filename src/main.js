@@ -1,9 +1,3 @@
-// polyfills to support node shims from 'tradingeconomics' npm library
-window.process = {
-    env: { DEBUG: undefined },
-  }
-window.global = window
-
 import './assets/main.css'
 
 import { createApp } from 'vue'
@@ -15,6 +9,12 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+
+// polyfills to support node shims from 'tradingeconomics' npm library
+window.process = {
+    env: { DEBUG: undefined },
+  }
+window.global = window
 
 const app = createApp(App)
 
