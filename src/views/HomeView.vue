@@ -75,5 +75,6 @@ export default {
   border: 1px solid #ccc;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
   background-color: #ececec;
+  width: 90%;
 }
 </style>

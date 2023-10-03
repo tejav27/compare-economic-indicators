@@ -1,7 +1,7 @@
 <template>
     <v-card style="width: 100vw;">
       <div class="px-4 py-2 text-center w-100 headerstyle">
-        <p><strong>Compare Economics</strong></p>
+        <p><strong>Compare Historical Data</strong></p>
       </div>
     </v-card>
   </template>

@@ -1,8 +1,7 @@
 <template>
   <v-card style="width: 100vw;">
-    <div class="bg-grey d-flex w-100 align-center px-4">
-      <strong>Get connected with us on social networks!</strong>
-      <v-spacer></v-spacer>
+    <div class="promo-message">
+      <p><strong class="text-center">History meets finance!</strong></p>
     </div>
 
     <div class="px-4 py-2 bg-black text-center w-100">
@@ -15,3 +14,13 @@ export default {
   name: 'Footer'
 }
 </script>
+<style scoped>
+    .promo-message{
+        background-color: grey;
+        display: flex;
+        justify-content: center;
+        padding: 0.2rem;
+        width: 100%;
+        color: #fff;
+    }
+</style>

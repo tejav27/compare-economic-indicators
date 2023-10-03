@@ -1,7 +1,7 @@
 <template>
   <v-container class="mx-auto" >
     <LineChart v-if="loaded" :chartData="chartData" xAxisLabel="Year" :yAxisLabel="indicatorCode" />
-    <v-card v-else class="mx-auto nodata"> We are busy! Please try again later!</v-card>
+    <v-card v-else class="mx-auto nodata">We are busy! Please try again later!</v-card>
   </v-container>
 </template>
 
@@ -11,20 +11,30 @@ import te from 'tradingeconomics'
 import { watch } from 'vue'
 
 export default {
-  name: 'HistoricalDataView',
+  name: 'HistoricalData',
   components: { LineChart },
   props: {
-    countryCodes: Array,
-    indicatorCode: String
+    countryCodes: {
+      type: Array,
+      required: true
+    },
+    indicatorCode: {
+      type: String,
+      required: true
+    }
   },
   data() {
     return {
       loaded: false,
-      chartData: null
+      chartData: null,
+      apiKey: import.meta.env.VITE_API_KEY_VARIABLE
     }
   },
   watch: {
     countryCodes() {
+      this.loadHistoricalData()
+    },
+    indicatorCode() {
       this.loadHistoricalData()
     }
   },
@@ -52,8 +62,8 @@ export default {
         await this.login()
         const data = await this.getHistoricalData()
 
-        const segregatedDatasets = this.segregateDatasets(data) // `segregatedDatasets` contains the segregated datasets by country
-        const { labels, chartDatasets } = this.convertDatasets(segregatedDatasets)
+        const dataSegregatedByCountry = this.segregateDataByCountry(data) // `segregatedDatasets` contains the segregated datasets by country
+        const { labels, chartDatasets } = this.createChartData(dataSegregatedByCountry)
 
         this.setChartData(labels, chartDatasets)
         this.loaded = true
@@ -63,15 +73,15 @@ export default {
     },
 
     async login() {
-      await te.login()
-      //await te.login('ba239be24bb243a:be260s52lj91r0p')
+      await te.login(this.apiKey)
+      //await te.login()
     },
 
     async getHistoricalData() {
       return te.getHistoricalData((country = this.countryCodes), (indicator = this.indicatorCode))
     },
 
-    segregateDatasets(data) {
+    segregateDataByCountry(data) {
       const segregatedDatasets = {}
 
       data.forEach((item) => {
@@ -87,7 +97,7 @@ export default {
       return segregatedDatasets
     },
 
-    convertDatasets(segregatedDatasets) {
+    createChartData(segregatedDatasets) {
       const labels = []
       const chartDatasets = []
 
