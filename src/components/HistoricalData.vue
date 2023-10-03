@@ -73,8 +73,7 @@ export default {
     },
 
     async login() {
-      await te.login(this.apiKey)
-      //await te.login()
+      await this.apiKey ? te.login(this.apiKey) : te.login()
     },
 
     async getHistoricalData() {
