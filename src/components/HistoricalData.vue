@@ -27,7 +27,7 @@ export default {
     return {
       loaded: false,
       chartData: null,
-      apiKey: import.meta.env.VITE_API_KEY_VARIABLE
+      apiKey: import.meta.env.VITE_API_KEY
     }
   },
   watch: {
