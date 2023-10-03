@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <Line v-if="chartData" :data="this.chartData" :options="chartOptions"/>
+  <div>
+    <Line v-if="chartData" :data="this.chartData" :options="chartOptions" :style="myStyles"/>
   </div>
 </template>
-  
+
 <script>
 import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineController, LinearScale, PointElement, CategoryScale, LineElement } from 'chart.js'
@@ -17,6 +17,14 @@ export default {
     chartData: Object,
     xAxisLabel: String,
     yAxisLabel: String
+  },
+  computed: {
+    myStyles () {
+      return {
+        width: '50vw',
+        position: 'relative'
+      }
+    }
   },
   data () {
     return {

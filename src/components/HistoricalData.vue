@@ -1,6 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="mx-auto">
     <LineChart v-if="loaded" :chartData="chartData" xAxisLabel="Year" :yAxisLabel="indicatorCode" />
+    <v-card v-else class="mx-auto nodata"> We are busy! Please try again later!</v-card>
   </v-container>
 </template>
 
@@ -103,7 +104,8 @@ export default {
           chartDatasets.push({
             label: country,
             data: datasetData,
-            backgroundColor: this.getRandomColor()
+            backgroundColor: this.getRandomColor(),
+            borderColor: this.getRandomColor(), // Specify the line color
           })
         }
       }
@@ -123,3 +125,12 @@ export default {
   }
 }
 </script>
+<style>
+  .nodata{
+    width: 30vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

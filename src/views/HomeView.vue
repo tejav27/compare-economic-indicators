@@ -1,14 +1,14 @@
 <template>
   <v-container align-center>
-    <v-row>
-      <v-card class="mx-auto mb-3">
+    <v-row >
+      <v-card class="mx-auto mb-3 d-flex dropdowns">
         <v-col>
           <v-select
             v-model="favorites"
             :items="allowedCountries"
-            label="Select"
+            label="Countries"
             multiple
-            hint="Pick your favorite countries"
+            hint="Choose one or more countries"
             persistent-hint
           ></v-select>
         </v-col>
@@ -16,7 +16,7 @@
           <v-select
             v-model="chosenIndicator"
             :items="allowedIndicators"
-            label="Select"
+            label="Indicator"
             hint="Pick your favorite indicator"
             persistent-hint
           ></v-select>
@@ -25,14 +25,24 @@
     </v-row>
     <v-row>
       <v-card>
-        <HistoricalDataView :countryCodes="favorites" :indicatorCode="chosenIndicator" />
+        <HistoricalDataView :countryCodes="favorites" :indicatorCode="chosenIndicator" class="mx-auto" />
       </v-card>
     </v-row>
   </v-container>
+  <v-footer class="d-flex flex-column">
+      <div class="bg-teal d-flex w-100 align-center px-4">
+        <strong>Get connected with us on social networks!</strong>
+        <v-spacer></v-spacer>
+      </div>
+
+      <div class="px-4 py-2 bg-black text-center w-100">
+        @ {{ new Date().getFullYear() }} — <strong>Tejaswi</strong>
+      </div>
+    </v-footer>
 </template>
 
 <script>
-import HistoricalDataView from '../components/HistoricalDataView.vue';
+import HistoricalDataView from '../components/HistoricalData.vue';
 
 export default {
   components: {
@@ -51,10 +61,10 @@ export default {
 
 <style>
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  .dropdowns{
+    width:30vw;
   }
+ 
 }
+
 </style>
